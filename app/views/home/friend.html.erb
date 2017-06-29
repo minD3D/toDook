@@ -1,0 +1,155 @@
+<!-- Header -->
+<div id="header">
+
+  <div class="top">
+
+    <!-- Logo -->
+    <div id="logo">
+      <span class="image avatar48"><%= image_tag("avatar.jpg") %></span>
+      <a href="/"><h1 id="title">toDook</h1></a>
+      <p><%= current_user.email %> <%= link_to 'LOG OUT', destroy_user_session_path, method: :delete %></p>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li><a href="/#top" id="portfolio-link" class="skel-layers-ignoreHref">To Do</a></li>
+        <li><a href="/home/friend/#friends" id="contact-link" class="skel-layers-ignoreHref">Friends</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+
+  <!-- Friends -->
+  <section id="friends" class="one cover">
+    <div class="container">
+
+      <header>
+        <h2>User search</h2>
+      </header>
+
+      <%= form_tag(home_friend_path, method: :get) do %>
+          <%= hidden_field_tag(:search, true) %>
+          <%= hidden_field_tag(:id, params[:id]) %>
+          <%= search_field_tag(:keyword, '') %>
+          <input type="submit" value="search" class="btn btn-secondary">
+      <% end %>
+
+      <br/>
+
+      <% if @search_users.present? %>
+          <% @search_users.each do |su| %>
+              <% if current_user.id == su.id %>
+
+              <% else %>
+                  <%= link_to "#{su.email}", home_friend_path(id: su.id, search: params[:search], keyword: params[:keyword]) %>
+              <% end %>
+              <% unless current_user.id == su.id %>
+                  <% if is_friend?(current_user.id, su.id) %>
+                      <%= link_to '친구삭제', friendships_path(friend_id: su.id), method: :delete %>
+                  <% else %>
+                      <%= link_to '친구추가', friendships_path(friend_id: su.id), method: :post %>
+                  <% end %>
+              <% end %>
+
+              <br>
+          <% end %>
+      <% end %>
+
+      <br/>
+
+      <h4>Friends list</h4>
+      <% @friends.each do |f| %>
+          <%= link_to "#{f.email}", home_friend_path(id: f.id) %> <%= link_to '친삭', friendships_path(user_id: current_user.id, friend_id: f.id), method: :delete %>
+          <br>
+      <% end %>
+
+      <%= link_to 'see all todos of my firends', home_friend_path(all: true) %>
+    </div>
+  </section>
+
+
+  <% if params[:id].present? or params[:all].present? %>
+      <!-- Todo list -->
+      <section id="todo" class="one cover">
+        <div class="container">
+
+          <header>
+            <h2>Friends To do</h2>
+          </header>
+
+          <% if params[:all].present? %>
+              <% if @a.present? %>
+                  <div class="row">
+                    <% @a.each do |all_event| %>
+
+                        <div class="4u 12u$(mobile)">
+                          <% if is_friend?(current_user.id, all_event.user_id) %>
+                              <%= link_to '공유', events_path(content: all_event.content, start_time: all_event.start_time, end_time: all_event.end_time, place: all_event.place), method: :post %>
+                          <% end %>
+                          <div class="post-it-note">
+                            <p class="pp"><%= all_event.content %></p>
+                            <b class="pa"><%= all_event.start_time.month %>/<%= all_event.start_time.day %> <% if all_event.start_time.hour < 10 %>0<% end %><%= all_event.start_time.hour %>:<% if all_event.start_time.min < 10 %>0<% end %><%= all_event.start_time.min %>
+                              ~ <%= all_event.end_time.month %>/<%= all_event.end_time.day %> <% if all_event.end_time.hour < 10 %>0<% end %><%= all_event.end_time.hour %>:<% if all_event.end_time.min < 10 %>0<% end %><%= all_event.end_time.min %>
+                              <br/><%= all_event.place %><br/></b>
+                          </div>
+                        </div>
+                    <% end %>
+                  </div>
+              <% elsif @friends.blank? %>
+                  <p>친구가 없어요...</p>
+              <% else %>
+                  <p>친구들의 일정이 없어요</p>
+              <% end %>
+
+          <% else %>
+
+              <% if @events.present? %>
+                  <div class="row">
+                    <% @events.each do |event| %>
+
+                        <div class="4u 12u$(mobile)">
+                          <% if is_friend?(current_user.id, event.user_id) %>
+                              <%= link_to '공유', events_path(content: event.content, start_time: event.start_time, end_time: event.end_time, place: event.place), method: :post %>
+                          <% end %>
+                          <div class="post-it-note">
+                            <p class="pp"><%= event.content %></p>
+                            <p class="pa"><%= event.start_time.month %>/<%= event.start_time.day %> <% if event.start_time.hour < 10 %>0<% end %><%= event.start_time.hour %>:<% if event.start_time.min < 10 %>0<% end %><%= event.start_time.min %>
+                              ~ <%= event.end_time.month %>/<%= event.end_time.day %> <% if event.end_time.hour < 10 %>0<% end %><%= event.end_time.hour %>:<% if event.end_time.min < 10 %>0<% end %><%= event.end_time.min %>
+                              <br/><%= event.place %><br/></p>
+                          </div>
+
+                        </div>
+                    <% end %>
+                  </div>
+              <% else %>
+                  <p>친구의 일정이 없어요</p>
+              <% end %>
+
+          <% end %>
+
+        </div>
+      </section>
+  <% end %>
+
+</div>
+
+<!-- Footer -->
+<div id="footer">
+
+  <!-- Copyright -->
+  <ul class="copyright">
+    <li>&copy; toDook. All rights reserved.</li>
+    <li>LIKELION with INHA</li>
+  </ul>
+
+</div>
+<script>
+    jQuery('#startdatetimepicker').datetimepicker();
+    jQuery('#enddatetimepicker').datetimepicker();
+</script>

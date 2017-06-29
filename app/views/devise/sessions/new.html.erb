@@ -1,0 +1,177 @@
+<!-- Header -->
+<div id="header">
+
+  <div class="top">
+
+    <!-- Logo -->
+    <div id="logo">
+      <span class="image avatar48"><%= image_tag("avatar.jpg") %></span>
+      <a href="#"><h1 id="title">toDook</h1></a>
+      <p>Todo List with SNS</p>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li><a href="#top" id="top-link" class="skel-layers-ignoreHref">Login</a></li>
+        <li><a href="#about" id="about-link" class="skel-layers-ignoreHref">About toDook</a></li>
+        <li><a href="#developer" id="contact-link" class="skel-layers-ignoreHref">Contact developer</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+<!-- Main -->
+<div id="main">
+
+  <!-- Intro -->
+  <section id="top" class="one cover">
+    <div class="container">
+
+      <header>
+        <h2 class="alt">Hi! I'm toDook</h2>
+        <p>Share your schedule with your friends</p>
+      </header>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+
+          <br/>
+
+          <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <br/>
+
+          <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                Remember me <%= f.check_box :remember_me %>
+              </div>
+          <% end -%>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+    </div>
+  </section>
+
+  <!-- About toDook -->
+  <section id="about" class="one cover">
+    <div class="container">
+
+      <header>
+        <h2>About toDook</h2>
+      </header>
+
+      <a href="#" class="image featured"><%= image_tag("aboutboard.jpg") %></a>
+
+      <h3>TodoList + SNS</h3>
+      <p></p>
+      <h4>혼자만의 일정리스트는 식상하다<br>친한 친구와 주변 팀원들과 공유하는 일정 리스트가 필요하다<br>당신은 지금 toDook이 필요하다</h4>
+      <p></p>
+      <p></p>
+
+        <div class="row">
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">멋쟁이 사자처럼 해커톤 참여</p>
+              <b class="pa">MinD3D</b>
+            </div>
+          </div>
+
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">생일 파티 </p>
+              <b class="pa">MinD3D</b>
+            </div>
+          </div>
+
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">부스트캠프 오리엔테이션</p>
+              <b class="pa">leejun6694</b>
+            </div>
+          </div>
+
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">멋쟁이 사자처럼 해커톤 참여</p>
+              <b class="pa">MinD3D</b>
+            </div>
+          </div>
+
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">인하대 운동장 축구</p>
+              <b class="pa">wjswnsgh</b>
+            </div>
+          </div>
+
+          <div class="4u 12u$(mobile)" >
+            <a href="home/edit/">수정</a>
+            <a href="home/destroy/">삭제</a>
+            <div class="post-it-note">
+              <p class="pp">Ruby on rails 공부하기</p>
+              <b class="pa">ssy23ssy</b>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+
+  <!-- developer -->
+  <section id="developer" class="one cover">
+    <div class="container">
+
+      <header>
+        <h2>Contact developer</h2>
+      </header>
+
+      <p></p>
+
+      <form method="post" action="#">
+        <div class="row">
+          <div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Name" /></div>
+          <div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+          <div class="12u$">
+            <textarea name="message" placeholder="Message"></textarea>
+          </div>
+          <div class="12u$">
+            <input type="submit" value="Send Message" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+
+  <!-- Copyright -->
+  <ul class="copyright">
+    <li>&copy; toDook. All rights reserved.</li><li>LIKELION with INHA</li>
+  </ul>
+
+</div>

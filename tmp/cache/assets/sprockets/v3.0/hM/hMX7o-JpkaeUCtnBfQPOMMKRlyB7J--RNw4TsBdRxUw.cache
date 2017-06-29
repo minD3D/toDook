@@ -1,0 +1,51 @@
+{:uriI"}file://app/assets/rome/package.json?type=application/json&id=a3f0d9ac2212099b3eabe34ff53dd04412aaa200f02a002419413e862364b118:ET:load_pathI"app/assets/rome;T:filenameI"!app/assets/rome/package.json;T:	nameI"package;T:logical_pathI"package.json;T:content_typeI"application/json;T:sourceI"ˆ{
+  "name": "rome",
+  "description": "Customizable date (and time) picker. Opt-in UI, no jQuery!",
+  "homepage": "https://github.com/bevacqua/rome",
+  "version": "2.1.22",
+  "author": {
+    "email": "hello@bevacqua.io",
+    "name": "Nicolas Bevacqua",
+    "url": "http://ponyfoo.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bevacqua/rome.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bevacqua/rome/issues"
+  },
+  "main": "src/rome.moment.js",
+  "dependencies": {
+    "bullseye": "1.4.6",
+    "contra": "1.9.1",
+    "crossvent": "1.5.0",
+    "moment": "^2.8.2"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "gulp": "^3.8.6",
+    "gulp-bump": "^0.1.8",
+    "gulp-clean": "^0.2.4",
+    "gulp-git": "^0.4.2",
+    "gulp-header": "^1.0.2",
+    "gulp-minify-css": "^0.3.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-size": "^0.3.1",
+    "gulp-streamify": "0.0.5",
+    "gulp-stylus": "^1.0.0",
+    "gulp-uglify": "^0.3.0",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^0.6.8",
+    "lodash.assign": "^3.2.0",
+    "nib": "^1.0.3",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^3.2.3"
+  }
+}
+;T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"@processors:type=application/json&file_type=application/json;TTI"/file-digest://app/assets/rome/package.json;TTF:charsetI"
+utf-8;F:digest"%×·Gœ…ó!wãO>™mš§@h1ªjb;<dšâf²TT:lengthiˆ:dependencies_digest"%Ím£€:yºh¸Œ¬ÃŽÎóþè<¬ìo*Ö:idI"Ea3f0d9ac2212099b3eabe34ff53dd04412aaa200f02a002419413e862364b118;F:
+mtimel+Á!QY

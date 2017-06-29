@@ -1,0 +1,118 @@
+<!-- Header -->
+<div id="header">
+
+  <div class="top">
+
+    <!-- Logo -->
+    <div id="logo">
+      <span class="image avatar48"><%= image_tag("avatar.jpg") %></span>
+      <a href="/"><h1 id="title">toDook</h1></a>
+      <p><%= current_user.email %> <%= link_to 'LOG OUT', destroy_user_session_path, method: :delete %></p>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li><a href="#top" id="top-link" class="skel-layers-ignoreHref">To Do</a></li>
+        <li><a href="#todo" id="portfolio-link" class="skel-layers-ignoreHref">To Do List</a></li>
+        <li><a href="/home/friend/#friends" id="contact-link" class="skel-layers-ignoreHref">Friends</a></li>
+        <li></li>
+      </ul>
+    </nav>
+
+  </div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+
+  <!-- Intro -->
+  <section id="top" class="one cover">
+    <div class="container">
+
+      <header class="ppp">
+        <h3 class="alt"><strong class="logos">Hi! I'm toDook</strong></h3>
+        <p>Share your schedule with your friends</p>
+      </header>
+
+      <footer>
+        <form method="get" action="events/create">
+          <article class="row">
+
+          <div class="12u$"><label for="filter-date">Things todo</label><input type="text" name="content" placeholder="" /></div>
+
+            <article class="item1">
+               <label for="filter-date">Start time</label>
+               <input id="startdatetimepicker" type="text" name="start_time">
+            </article>
+
+            <article class="item1">
+              <label for="filter-date">End time</label>
+              <input id="enddatetimepicker" type="text" name="end_time">
+            </article>
+
+            <article class="item2">
+              <label for="filter-date">Place</label>
+              <input type="text" name="place">
+            </article>
+            
+            <div class="container">
+              <input type="submit" value="Post toDook"/>
+            </div>
+
+          </article>
+        </form>
+      </footer>
+    </div>
+  </section>
+  <!-- Portfolio -->
+  <section id="todo" class="one cover">
+    <div class="container">
+
+      <header>
+        <h2>To Do List</h2>
+      </header>
+
+      <% if @events.present? %>
+          <div class="row">
+            <% @events.each do |event| %>
+                <div class="4u 12u$(mobile)" >
+                  <a href="home/edit/<%= event.id %>">수정</a>
+                  <a href="home/destroy/<%= event.id %>">삭제</a>
+
+                    <div class="post-it-note">
+                      <p class="pp"><%= event.content %></p>
+                      <b class="pa"><%= event.start_time.month %>/<%= event.start_time.day %> <% if event.start_time.hour < 10 %>0<% end %><%= event.start_time.hour %>:<% if event.start_time.min < 10 %>0<% end %><%= event.start_time.min %>
+                        ~ <%= event.end_time.month %>/<%= event.end_time.day %> <% if event.end_time.hour < 10 %>0<% end %><%= event.end_time.hour %>:<% if event.end_time.min < 10 %>0<% end %><%= event.end_time.min %>
+                        <br/><%= event.place %><br/></b>
+                    </div>
+                </div>
+            <% end %>
+      <% else %>
+          <a href="#">새로운 todo를 추가해 주세요!</a>
+      <% end %>
+
+      </div>
+    </div>
+  </section>
+
+
+    </div>
+  </main>
+</div>
+
+<!-- Footer -->
+<div id="footer" class="one cover">
+
+  <!-- Copyright -->
+  <ul class="copyright">
+    <li>&copy; toDook. All rights reserved.</li>
+    <li>LIKELION with INHA</li>
+  </ul>
+
+</div>
+<script>
+    jQuery('#startdatetimepicker').datetimepicker();
+    jQuery('#enddatetimepicker').datetimepicker();
+</script>
